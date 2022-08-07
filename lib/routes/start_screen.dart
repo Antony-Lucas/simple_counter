@@ -7,14 +7,14 @@ import 'package:people_count/widgets/text_labels.dart';
 
 class CatchNumber extends StatefulWidget {
   const CatchNumber({Key? key}) : super(key: key);
-
   @override
   State<CatchNumber> createState() => _CatchNumberState();
 }
 
 class _CatchNumberState extends State<CatchNumber> {
   final _quantityController = TextEditingController();
-  bool status = false;
+  bool? status;
+  final _formKey = GlobalKey<FormState>();
   @override
   void dispose() {
     _quantityController.dispose();
@@ -23,42 +23,42 @@ class _CatchNumberState extends State<CatchNumber> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            labelText(
-              text: "Eai, qual o limite da sua contagem?",
-              colored: AppColors.fontAwesome,
-              alignment: TextAlign.start
-            ),
-            const SizedBox(height: 1.0),
-            buildTextField(controller: _quantityController),
-            const SizedBox(height: 30.0),
-            iconButton(
-              disabled: status,
-              event: (){
-                print(_quantityController.text);
-                if(int.parse(_quantityController.text) >= 0){
-                  setState(() {
-                    status = true;
-                  });
-                  Navigator.push(context, MaterialPageRoute(builder:
-                    (context) => MainScreen(content:
-                      _quantityController.text)));
-                }else{
-                  setState(() {
-                    status = false;
-                  });
-                }
-              }
-            )
-          ],
-        ),
-      )
+        backgroundColor: Colors.white,
+        resizeToAvoidBottomInset: false,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: labelText(
+                  text: "Eai, qual o limite da sua contagem?",
+                  colored: AppColors.fontAwesome,
+                  alignment: TextAlign.start
+                ),
+              ),
+              SizedBox(
+                height: 70.0,
+                child: buildTextField(controller: _quantityController, formKey: _formKey),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 140),
+                child: iconButton(
+                  event: () {
+                    if(_formKey.currentState!.validate()){
+                      Navigator.push(context, MaterialPageRoute(builder:
+                        (context) =>
+                        MainScreen(content:
+                        _quantityController.text)));
+                    }
+                  },
+                ),
+              )
+            ],
+          ),
+        )
     );
   }
 }

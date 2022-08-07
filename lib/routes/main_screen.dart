@@ -33,8 +33,8 @@ class _MainScreenState extends State<MainScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          BackButtonIco(
-            setIcon: const Icon(Icons.arrow_back),
+          backButtonIcon(
+            setIcon: const Icon(Icons.chevron_left),
             event: (){
               showDialog(
                 context: context,
@@ -43,7 +43,7 @@ class _MainScreenState extends State<MainScreen> {
               );
             }),
           labelText(
-            text: "Contagem Aberta!",
+            text: "${widget.content}\nLimite",
             colored: AppColors.antiIcon,
             alignment: TextAlign.center
           ),
@@ -67,7 +67,8 @@ class _MainScreenState extends State<MainScreen> {
                 }
               ),
             ],
-          )
+          ),
+          const SizedBox(height: 250,)
         ],
       )
     );
