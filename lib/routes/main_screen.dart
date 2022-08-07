@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:people_count/colorPallete/color_pallete.dart';
 import 'package:people_count/widgets/back_button.dart';
+import 'package:people_count/widgets/show_dialog.dart';
 import 'package:people_count/widgets/text_button.dart';
 import 'package:people_count/widgets/text_labels.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
 
+class MainScreen extends StatefulWidget {
+  const MainScreen({Key? key, required this.content}) : super(key: key);
+  final String content;
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
   int _count = 0;
+
   void incrementCounter(){
     setState(() {
       _count++;
@@ -32,23 +36,34 @@ class _MainScreenState extends State<MainScreen> {
           BackButtonIco(
             setIcon: const Icon(Icons.arrow_back),
             event: (){
-              Navigator.pop(context);
+              showDialog(
+                context: context,
+                builder: (_) => alertDialog(setContext: context),
+                barrierDismissible: true
+              );
             }),
-          labelText(),
+          labelText(
+            text: "Contagem Aberta!",
+            colored: AppColors.antiIcon,
+            alignment: TextAlign.center
+          ),
           mainText(text: '$_count'),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               textButton(
-                labelButton: "Saiu",
+                labelButton: "Remover",
                 event: (){
                   decrementCounter();
                 }
               ),
               textButton(
-                labelButton: "Entrou",
+                labelButton: "Adicionar",
                 event: (){
                   incrementCounter();
+                  if(_count == int.parse(widget.content)){
+                    print("lotou ai po kkkk");
+                  }
                 }
               ),
             ],

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-Widget labelText(){
+Widget labelText({required String text, required Color colored, required alignment}){
   return Text(
-    "Pode entrar!",
+    text,
     style: TextStyle(
-        fontSize: 26,
-        fontWeight: FontWeight.bold
+      fontSize: 16.0,
+      fontWeight: FontWeight.bold,
+      color: colored,
     ),
-    textAlign: TextAlign.center,
+    textAlign: alignment,
   );
 }
 
