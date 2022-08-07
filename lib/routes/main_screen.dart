@@ -26,9 +26,12 @@ class _MainScreenState extends State<MainScreen> {
       _count--;
     });
   }
+  bool get isEmptyNumber => _count == 0;
+  bool get isFullNumber => _count == int.parse(widget.content);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -43,32 +46,35 @@ class _MainScreenState extends State<MainScreen> {
               );
             }),
           labelText(
-            text: "${widget.content}\nLimite",
+            text: isFullNumber ? "Limite Alcançado" : "Limite: ${widget.content}",
             colored: AppColors.antiIcon,
             alignment: TextAlign.center
           ),
-          mainText(text: '$_count'),
+          mainText(text:'$_count'),
+          const SizedBox(height: 100,),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               textButton(
-                labelButton: "Remover",
+                labelButton: "-",
+                bgColor: isEmptyNumber ? AppColors.babyPowder : AppColors.antiIcon,
+                txtColor: isEmptyNumber ? AppColors.antiIcon : AppColors.fontAwesome,
                 event: (){
-                  decrementCounter();
+                  isEmptyNumber ? null : decrementCounter();
                 }
               ),
+              const SizedBox(width: 30,),
               textButton(
-                labelButton: "Adicionar",
+                labelButton: "+",
+                bgColor: isFullNumber ? AppColors.babyPowder : AppColors.antiIcon,
+                txtColor: isFullNumber ? AppColors.antiIcon : AppColors.fontAwesome,
                 event: (){
-                  incrementCounter();
-                  if(_count == int.parse(widget.content)){
-                    print("lotou ai po kkkk");
-                  }
+                  isFullNumber ? null : incrementCounter();
                 }
               ),
             ],
           ),
-          const SizedBox(height: 250,)
+          const SizedBox(height: 100,)
         ],
       )
     );

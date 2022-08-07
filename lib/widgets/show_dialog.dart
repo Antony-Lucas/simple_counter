@@ -5,15 +5,15 @@ import 'package:people_count/widgets/text_button.dart';
 Widget alertDialog({required setContext}){
   return AlertDialog(
     title: const Text("Sair"),
-    content: const Text("Deseja voltar para a seleção de quantidade?"),
+    content: const Text("Deseja inserir um novo limite?"),
     actions: [
-      textButton(
+      dialogTextButton(
         labelButton: "Cancelar",
         event: (){
           Navigator.pop(setContext);
         }
       ),
-      textButton(
+      dialogTextButton(
         labelButton: "Sim",
         event: (){
           Navigator.pushReplacement(

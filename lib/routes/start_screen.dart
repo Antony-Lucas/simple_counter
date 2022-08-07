@@ -32,9 +32,9 @@ class _CatchNumberState extends State<CatchNumber> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                 child: labelText(
-                  text: "Eai, qual o limite da sua contagem?",
+                  text: "Qual o limite da sua contagem?",
                   colored: AppColors.fontAwesome,
                   alignment: TextAlign.start
                 ),
