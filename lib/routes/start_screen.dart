@@ -12,11 +12,13 @@ class CatchNumber extends StatefulWidget {
 }
 
 class _CatchNumberState extends State<CatchNumber> {
+  final _titleController = TextEditingController();
   final _quantityController = TextEditingController();
+  final _titleKey = GlobalKey<FormState>();
   bool? status;
-  final _formKey = GlobalKey<FormState>();
   @override
   void dispose() {
+    _titleController.dispose();
     _quantityController.dispose();
     super.dispose();
   }
@@ -34,28 +36,47 @@ class _CatchNumberState extends State<CatchNumber> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                 child: labelText(
-                  text: "Qual o limite da sua contagem?",
+                  text: "O que você deseja contar?",
                   colored: AppColors.fontAwesome,
                   alignment: TextAlign.start
                 ),
               ),
               SizedBox(
-                height: 70.0,
-                child: buildTextField(controller: _quantityController, formKey: _formKey),
+                height: 85.0,
+                child: txtTextField(
+                  controller: _titleController,
+                  hintText: "Pontução, quantidade de livros, etc...",
+                  formKey: _titleKey
+                ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 140),
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                child: labelText(
+                  text: "Limite (opcional)",
+                  colored: AppColors.fontAwesome,
+                  alignment: TextAlign.start
+                ),
+              ),
+              SizedBox(
+                height: 85.0,
+                child: numberTextField(
+                  controller: _quantityController,
+                  hintText: "Ex: 30"),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 25),
                 child: iconButton(
                   event: () {
-                    if(_formKey.currentState!.validate()){
-                      Navigator.push(context, MaterialPageRoute(builder:
-                        (context) =>
-                        MainScreen(content:
-                        _quantityController.text)));
+                    if(_titleKey.currentState!.validate()){
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => MainScreen(
+                          content: _quantityController.text.isEmpty ? -1 : int.parse(_quantityController.text),
+                          title: _titleController.text,)));
                     }
                   },
                 ),
-              )
+              ),
+              const SizedBox(height: 100,)
             ],
           ),
         )

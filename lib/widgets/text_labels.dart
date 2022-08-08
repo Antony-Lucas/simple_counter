@@ -3,7 +3,7 @@ import 'package:people_count/colorPallete/color_pallete.dart';
 
 Widget labelText({required String text, required Color colored, required alignment}){
   return SizedBox(
-    height: 40,
+    height: 30,
     child: Text(
       text,
       style: TextStyle(
@@ -12,6 +12,8 @@ Widget labelText({required String text, required Color colored, required alignme
         color: colored,
       ),
       textAlign: alignment,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
     ),
   );
 }

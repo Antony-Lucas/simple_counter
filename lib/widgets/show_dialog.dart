@@ -5,7 +5,7 @@ import 'package:people_count/widgets/text_button.dart';
 Widget alertDialog({required setContext}){
   return AlertDialog(
     title: const Text("Sair"),
-    content: const Text("Deseja inserir um novo limite?"),
+    content: const Text("Deseja criar uma nova contagem?"),
     actions: [
       dialogTextButton(
         labelButton: "Cancelar",
@@ -17,8 +17,8 @@ Widget alertDialog({required setContext}){
         labelButton: "Sim",
         event: (){
           Navigator.pushReplacement(
-              setContext,
-              MaterialPageRoute(builder: (setContext) => CatchNumber())
+            setContext,
+            MaterialPageRoute(builder: (setContext) => CatchNumber())
           );
         }
       )
