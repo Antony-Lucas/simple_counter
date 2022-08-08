@@ -1,16 +1,6 @@
-# people_count
+## Um simples contador para te auxiliar com tarefas do cotidiano 
 
-A new Flutter project.
+Criado com Dart/Flutter
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![](![count_app](https://user-images.githubusercontent.com/54651622/183328632-5fe682f1-5d6b-44d9-b4ca-d66f7eebece1.jpg)
+ | width=100)
