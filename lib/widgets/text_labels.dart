@@ -22,7 +22,7 @@ Widget mainText({required String text}){
   return Text(
     text,
     style: const TextStyle(
-      fontSize: 100,
+      fontSize: 130,
       color: AppColors.grayChapter,
     ),
     textAlign: TextAlign.center,
