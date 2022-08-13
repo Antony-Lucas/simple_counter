@@ -52,9 +52,10 @@ class _MainScreenState extends State<MainScreen> {
       },
       child: Scaffold(
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+          Container(padding: const EdgeInsets.only(top:30)),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -69,7 +70,7 @@ class _MainScreenState extends State<MainScreen> {
               const SizedBox(width: 90),
               Flexible(
                 child: Container(
-                  padding: const EdgeInsets.only(bottom: 140),
+                  padding: const EdgeInsets.only(bottom: 100),
                   child: TextButton(
                     onPressed: () {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -92,13 +93,14 @@ class _MainScreenState extends State<MainScreen> {
                 }),
             ],
           ),
+          Container(padding: const EdgeInsets.only(top:25)),
           labelText(
             text: setLimit(),
             colored: AppColors.antiIcon,
             alignment: TextAlign.center),
           mainText(text: '$_count'),
           const SizedBox(
-            height: 100,
+            height: 40,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -129,9 +131,6 @@ class _MainScreenState extends State<MainScreen> {
               ),
             ],
           ),
-          const SizedBox(
-            height: 100,
-          )
         ],
       )),
     );
